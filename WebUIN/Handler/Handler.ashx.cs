@@ -7,6 +7,8 @@ using Newtonsoft.Json;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace WebUI.Handler
 {
@@ -77,10 +79,26 @@ namespace WebUI.Handler
                 case "SendEmail":
                     SendEmail();
                     break;
+                case "ParallelTest":
+                    ParallelTest();
+                    break;
                 default:
                     break;
             }
             g_Context.Response.End();
+        }
+
+        private void ParallelTest()
+        {
+             
+
+            // 并行的for循环
+            Parallel.For(0, 200, i =>
+            {
+                
+            });
+
+            
         }
 
         private void Delete_CODE_STUFF()
