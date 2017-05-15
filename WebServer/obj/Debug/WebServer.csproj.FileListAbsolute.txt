@@ -1,0 +1,12 @@
+E:\袁满\橼\aresz.cn\WebServer\bin\Debug\WebServer.exe.config
+E:\袁满\橼\aresz.cn\WebServer\obj\Debug\WebServer.csprojResolveAssemblyReference.cache
+E:\袁满\橼\aresz.cn\WebServer\obj\Debug\WebServer.Form1.resources
+E:\袁满\橼\aresz.cn\WebServer\obj\Debug\WebServer.Properties.Resources.resources
+E:\袁满\橼\aresz.cn\WebServer\obj\Debug\WebServer.csproj.GenerateResource.Cache
+E:\袁满\橼\aresz.cn\WebServer\bin\Debug\WebServer.exe
+E:\袁满\橼\aresz.cn\WebServer\bin\Debug\WebServer.pdb
+E:\袁满\橼\aresz.cn\WebServer\bin\Debug\WebDLL.dll
+E:\袁满\橼\aresz.cn\WebServer\bin\Debug\Newtonsoft.Json.dll
+E:\袁满\橼\aresz.cn\WebServer\bin\Debug\WebDLL.pdb
+E:\袁满\橼\aresz.cn\WebServer\obj\Debug\WebServer.exe
+E:\袁满\橼\aresz.cn\WebServer\obj\Debug\WebServer.pdb
