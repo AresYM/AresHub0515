@@ -1,8 +1,8 @@
-E:\AresGit\WebUIN\bin\WebUIN.dll.config
-E:\AresGit\WebUIN\bin\WebUIN.dll
-E:\AresGit\WebUIN\bin\WebUIN.pdb
 E:\AresGit\WebUIN\bin\WebDLL.dll
 E:\AresGit\WebUIN\bin\WebDLL.pdb
 E:\AresGit\WebUIN\obj\Debug\WebUI.csprojResolveAssemblyReference.cache
-E:\AresGit\WebUIN\obj\Debug\WebUIN.dll
-E:\AresGit\WebUIN\obj\Debug\WebUIN.pdb
+E:\AresGit\WebUIN\bin\WebUI.dll.config
+E:\AresGit\WebUIN\bin\WebUI.dll
+E:\AresGit\WebUIN\bin\WebUI.pdb
+E:\AresGit\WebUIN\obj\Debug\WebUI.dll
+E:\AresGit\WebUIN\obj\Debug\WebUI.pdb
