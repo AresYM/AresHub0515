@@ -4,3 +4,8 @@ E:\袁满\橼\aresz.cn\WebDLL\obj\Debug\WebDLL.dll
 E:\袁满\橼\aresz.cn\WebDLL\obj\Debug\WebDLL.pdb
 E:\袁满\橼\aresz.cn\WebDLL\bin\Debug\Newtonsoft.Json.dll
 E:\袁满\橼\aresz.cn\WebDLL\obj\Debug\WebDLL.csprojResolveAssemblyReference.cache
+E:\AresGit\WebDLL\bin\Debug\WebDLL.dll
+E:\AresGit\WebDLL\bin\Debug\WebDLL.pdb
+E:\AresGit\WebDLL\bin\Debug\Newtonsoft.Json.dll
+E:\AresGit\WebDLL\obj\Debug\WebDLL.dll
+E:\AresGit\WebDLL\obj\Debug\WebDLL.pdb

@@ -10,3 +10,15 @@ E:\袁满\橼\aresz.cn\WebServer\bin\Debug\Newtonsoft.Json.dll
 E:\袁满\橼\aresz.cn\WebServer\bin\Debug\WebDLL.pdb
 E:\袁满\橼\aresz.cn\WebServer\obj\Debug\WebServer.exe
 E:\袁满\橼\aresz.cn\WebServer\obj\Debug\WebServer.pdb
+E:\AresGit\WebServer\bin\Debug\WebServer.exe.config
+E:\AresGit\WebServer\bin\Debug\WebServer.exe
+E:\AresGit\WebServer\bin\Debug\WebServer.pdb
+E:\AresGit\WebServer\bin\Debug\WebDLL.dll
+E:\AresGit\WebServer\bin\Debug\Newtonsoft.Json.dll
+E:\AresGit\WebServer\bin\Debug\WebDLL.pdb
+E:\AresGit\WebServer\obj\Debug\WebServer.csprojResolveAssemblyReference.cache
+E:\AresGit\WebServer\obj\Debug\WebServer.Form1.resources
+E:\AresGit\WebServer\obj\Debug\WebServer.Properties.Resources.resources
+E:\AresGit\WebServer\obj\Debug\WebServer.csproj.GenerateResource.Cache
+E:\AresGit\WebServer\obj\Debug\WebServer.exe
+E:\AresGit\WebServer\obj\Debug\WebServer.pdb

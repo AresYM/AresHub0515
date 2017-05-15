@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A32B9BDA-F005-4791-B88D-3598DB840412}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebUIN</RootNamespace>
+    <AssemblyName>WebUIN</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <ApplicationInsightsResourceId />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\袁满\aresz.cn\aresz.cn\WebDLL\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\P1.aspx" />
+    <Content Include="Admin\P2.aspx" />
+    <Content Include="Admin\UserManager.aspx" />
+    <Content Include="App_Data\ARES.mdb" />
+    <Content Include="BaseSet\CODE_STUFF.aspx" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="HomePage.aspx" />
+    <Content Include="Index.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="plug.js" />
+    <Content Include="Register.aspx" />
+    <Content Include="Scripts\Images\ares.jpg" />
+    <Content Include="Scripts\Images\index_logo.png" />
+    <Content Include="Scripts\Images\index_logo2.png" />
+    <Content Include="Scripts\Images\login_logo.png" />
+    <Content Include="Scripts\Images\register_logo.png" />
+    <Content Include="Scripts\Images\说明.png" />
+    <Content Include="Scripts\JS\code_data.js" />
+    <Content Include="Scripts\JS\Global.js" />
+    <Content Include="Scripts\JS\jquery.min.js" />
+    <Content Include="Scripts\JS\md5.js" />
+    <Content Include="Scripts\Packages\Element-UI\element_ui.css" />
+    <Content Include="Scripts\Packages\Element-UI\element_ui.js" />
+    <Content Include="Scripts\Packages\Element-UI\fonts\element-icons.svg" />
+    <Content Include="Scripts\Packages\Element-UI\vue.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\accordion.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\accordion.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\accordion.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\accordion.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\ad.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\ad.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\api.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\api.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\breadcrumb.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\breadcrumb.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\button.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\button.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\card.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\card.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\checkbox.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\checkbox.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\checkbox.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\checkbox.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\colorize.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\colorize.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\comment.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\comment.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\container.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\container.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\dimmer.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\dimmer.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\dimmer.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\dimmer.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\divider.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\divider.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\dropdown.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\dropdown.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\dropdown.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\dropdown.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\embed.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\embed.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\embed.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\embed.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\feed.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\feed.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\flag.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\flag.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\form.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\form.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\form.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\form.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\grid.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\grid.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\header.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\header.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\icon.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\icon.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\image.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\image.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\input.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\input.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\item.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\item.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\label.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\label.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\list.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\list.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\loader.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\loader.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\menu.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\menu.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\message.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\message.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\modal.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\modal.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\modal.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\modal.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\nag.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\nag.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\nag.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\nag.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\popup.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\popup.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\popup.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\popup.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\progress.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\progress.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\progress.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\progress.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\rail.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\rail.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\rating.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\rating.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\rating.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\rating.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\reset.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\reset.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\reveal.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\reveal.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\search.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\search.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\search.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\search.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\segment.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\segment.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\shape.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\shape.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\shape.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\shape.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\sidebar.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\sidebar.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\sidebar.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\sidebar.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\site.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\site.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\site.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\site.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\state.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\state.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\statistic.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\statistic.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\step.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\step.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\sticky.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\sticky.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\sticky.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\sticky.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\tab.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\tab.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\tab.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\tab.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\table.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\table.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\transition.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\transition.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\transition.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\transition.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\video.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\video.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\video.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\video.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\visibility.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\visibility.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\visit.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\components\visit.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\semantic.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\semantic.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\semantic.min.css" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\semantic.min.js" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\basic\assets\fonts\icons.svg" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\default\assets\fonts\icons.svg" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\default\assets\images\flags.png" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\github\assets\fonts\octicons.svg" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\material\assets\fonts\icons.svg" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="WebApps\download.aspx" />
+    <Content Include="WebApps\game.js" />
+    <Content Include="WebApps\games.aspx" />
+    <Content Include="WebApps\spjx.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\P1.aspx.cs">
+      <DependentUpon>P1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\P2.aspx.cs">
+      <DependentUpon>P2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserManager.aspx.cs">
+      <DependentUpon>UserManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BaseSet\CODE_STUFF.aspx.cs">
+      <DependentUpon>CODE_STUFF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Handler\Handler.ashx.cs">
+      <DependentUpon>Handler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage.aspx.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePage.aspx.designer.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebApps\download.aspx.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebApps\games.aspx.cs">
+      <DependentUpon>games.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebApps\spjx.aspx.cs">
+      <DependentUpon>spjx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Download\IP切换器.zip" />
+    <Content Include="Download\护眼.zip" />
+    <Content Include="Handler\Handler.ashx" />
+    <Content Include="Scripts\Packages\Element-UI\fonts\element-icons.eot" />
+    <Content Include="Scripts\Packages\Element-UI\fonts\element-icons.ttf" />
+    <Content Include="Scripts\Packages\Element-UI\fonts\element-icons.woff" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\basic\assets\fonts\icons.eot" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\basic\assets\fonts\icons.ttf" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\basic\assets\fonts\icons.woff" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\default\assets\fonts\icons.eot" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\default\assets\fonts\icons.otf" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\default\assets\fonts\icons.ttf" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\default\assets\fonts\icons.woff" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\default\assets\fonts\icons.woff2" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\github\assets\fonts\octicons-local.ttf" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\github\assets\fonts\octicons.ttf" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\github\assets\fonts\octicons.woff" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\material\assets\fonts\icons.eot" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\material\assets\fonts\icons.ttf" />
+    <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\material\assets\fonts\icons.woff" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\CSS\" />
+    <Folder Include="Scripts\Packages\Element-UI\CSS\fonts\" />
+    <Folder Include="Scripts\Packages\Element-UI\Scripts\" />
+    <Folder Include="Scripts\Packages\Element-UI\Views\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\accordion\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\animation\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\badge\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\button\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\datagrid\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\datalist\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\dialog\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\form\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\images\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\input\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\layout\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\menu\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\panel\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\simplelist\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\tabs\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\toolbar\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo-mobile\tree\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\accordion\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\calendar\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\combobox\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\combogrid\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\combotreegrid\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\combotree\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\combo\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\datagrid\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\datalist\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\datebox\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\datetimebox\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\datetimespinner\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\dialog\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\draggable\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\droppable\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\easyloader\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\filebox\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\form\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\layout\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\linkbutton\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\menubutton\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\menu\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\messager\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\numberbox\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\numberspinner\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\pagination\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\panel\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\passwordbox\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\progressbar\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\propertygrid\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\resizable\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\searchbox\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\slider\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\splitbutton\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\switchbutton\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\tabs\images\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\tagbox\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\textbox\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\timespinner\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\tooltip\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\treegrid\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\tree\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\validatebox\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\demo\window\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\locale\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\plugins\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\src\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\themes\black\images\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\themes\bootstrap\images\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\themes\default\images\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\themes\gray\images\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\themes\icons\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\themes\material\images\" />
+    <Folder Include="Scripts\Packages\jquery-easyui-1.5.1\themes\metro\images\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\examples\assets\images\avatar\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\examples\assets\images\wireframe\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\examples\assets\library\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\examples\components\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\definitions\behaviors\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\definitions\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\definitions\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\definitions\globals\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\definitions\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\definitions\views\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\amazon\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\amazon\globals\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\basic\assets\fonts\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\basic\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\basic\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\basic\globals\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\basic\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\basic\views\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\bookish\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\bootstrap3\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\chubby\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\chubby\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\chubby\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\chubby\views\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\classic\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\classic\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\classic\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\classic\views\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\colored\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\default\assets\fonts\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\default\assets\images\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\default\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\default\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\default\globals\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\default\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\default\views\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\duo\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\fixed-width\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\fixed-width\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\flat\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\flat\globals\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\github\assets\fonts\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\github\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\github\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\github\globals\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\github\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\gmail\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\instagram\views\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\material\assets\fonts\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\material\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\material\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\material\globals\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\material\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\pulsar\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\raised\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\resetcss\globals\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\round\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\rtl\globals\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\striped\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\timeline\views\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\themes\twitter\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\_site\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\_site\elements\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\_site\globals\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\_site\modules\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\src\_site\views\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\tasks\admin\components\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\tasks\admin\distributions\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\tasks\build\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\tasks\collections\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\tasks\config\admin\templates\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\tasks\config\npm\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\tasks\config\project\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\tasks\docs\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\tasks\rtl\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\test\coverage\PhantomJS 1.9.2 %28Linux%29\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\test\fixtures\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\test\helpers\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\test\meteor\" />
+    <Folder Include="Scripts\Packages\Semantic-UI-master\test\modules\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebDLL\WebDLL.csproj">
+      <Project>{346530cd-b814-4ded-b38a-af1a7a72d27c}</Project>
+      <Name>WebDLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58155</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58155/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
