@@ -19,8 +19,7 @@ namespace WebServer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // EmailHelper.Instance.SendMail(textBox1.Text, textBox2.Text);
-
+              
             string sqlTable = @"select object_id,name from sys.objects where type='U' order by object_id";
             DataTable dtTables = DbHelperSQL.QueryTable(sqlTable);
             StringBuilder cs = new StringBuilder();
@@ -75,6 +74,11 @@ namespace WebServer
             sw1.WriteLine(js.ToString());
             sw1.Close(); //关闭文件
             MessageBox.Show("生成完毕");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //EmailHelper.Instance.SendMail(textBox1.Text, textBox2.Text);
         }
     }
 }
