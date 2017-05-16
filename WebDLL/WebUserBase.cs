@@ -40,27 +40,7 @@ namespace WebDLL
 
         
 
-
-        public static Friend GetFriend(string UID)
-        {
-            string sql = string.Format(@"SELECT * FROM ARES_FRIEND WHERE UID=@UID");
-            DataTable dt = DbHelperACE.QueryTable(sql, new System.Data.OleDb.OleDbParameter[] {
-                    new System.Data.OleDb.OleDbParameter("@UID",UID)
-            });
-            if (dt != null && dt.Rows.Count > 0)
-            {
-
-                Friend f = new Friend(dt.Rows[0]["UID"].ToString(), dt.Rows[0]["NAME"].ToString(),
-                    dt.Rows[0]["BIRTH_DAY"].ToString(), dt.Rows[0]["SEX"].ToString(), dt.Rows[0]["IMG"].ToString());
-
-                return f;
-            }
-            else
-            {
-                return new Friend();
-            }
-
-        }
+         
 
         public static DataTable GetMenus(string UID)
         {

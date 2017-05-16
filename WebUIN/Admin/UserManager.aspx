@@ -28,9 +28,9 @@
         });
 
         window.GetUsers = function () {
-            var queryVal = $("#htxt_queryVal").val();
-            Ares.Ajax("GetUsers", { queryVal: queryVal }, function (data) {
-                TabUserList.Bind(data);
+             
+            Ares.Ajax("ParallelTest", {  }, function (data) {
+                
             }, true, null, "../Handler/Handler.ashx", true)
         }
     </script>

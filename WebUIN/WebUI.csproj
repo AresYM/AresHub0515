@@ -41,9 +41,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\袁满\aresz.cn\aresz.cn\WebDLL\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -84,6 +85,7 @@
     <Content Include="Scripts\JS\Global.js" />
     <Content Include="Scripts\JS\jquery.min.js" />
     <Content Include="Scripts\JS\md5.js" />
+    <Content Include="Scripts\JS\WebEntity.js" />
     <Content Include="Scripts\Packages\Element-UI\element_ui.css" />
     <Content Include="Scripts\Packages\Element-UI\element_ui.js" />
     <Content Include="Scripts\Packages\Element-UI\fonts\element-icons.svg" />
@@ -328,6 +330,7 @@
     <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\material\assets\fonts\icons.eot" />
     <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\material\assets\fonts\icons.ttf" />
     <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\material\assets\fonts\icons.woff" />
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

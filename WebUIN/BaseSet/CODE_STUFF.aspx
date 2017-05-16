@@ -12,16 +12,16 @@
     <link href="../Scripts/Packages/Element-UI/element_ui.css" rel="stylesheet" />
     <script src="../Scripts/Packages/Element-UI/element_ui.js"></script>
     <script src="../Scripts/JS/Global.js"></script>
-    <script src="../Scripts/JS/code_data.js"></script>
+    <script src="../Scripts/JS/WebEntity.js"></script>
 
 
     <script>
         $(function () {
-
+             
             var vm = new Vue({
                 el: "#app",
                 data: {
-                    form: ___CODE_STRUCTURE.CODE_STUFF,
+                    form: EntityStructure.ARES_CODE_STUFF,
                     dialogFormVisible: false, //控制添加数据的弹框显示关闭
                     total: 600,
                     tableData: []
@@ -30,7 +30,7 @@
                     //插入和更新操作
                     Save: function () {
                         var _this = this;
-                        Ares.Ajax("Save_CODE_STUFF", this.form, function (res) {
+                        Ares.Ajax("CODE_OPERTAE", { "data": JSON.stringify(this.form), "EntityName": "ARES_CODE_STUFF" }, function (res) {
                             if (res.Status == "200") {
                                 _this.$message({
                                     showClose: true,
@@ -44,12 +44,12 @@
                                     message: res.Message
                                 });
                             }
-                        }, true, null, "../Handler/Handler.ashx", true);
+                        }, true, null, "../Handler/Handler.ashx", false);
                     },
                     //删除操作
                     Delete: function (index, row) {
                         var _this = this;
-                        Ares.Ajax("Delete_CODE_STUFF", { CODE: row.CODE }, function (res) {
+                        Ares.Ajax("CODE_DELETE", { CODE: row.CODE, "EntityName": "ARES_CODE_STUFF" }, function (res) {
                             if (res.Status == "200") {
                                 _this.$message({
                                     showClose: true,
@@ -69,14 +69,15 @@
                     //更新操作
                     Update: function (index, row) {
                         var _this = this;
+                        //row.OPEN_FLAG = true;
                         _this.form = row;
                         _this.dialogFormVisible = true;
                     },
                     Query: function () {
                         var that = this;
-                        Ares.Ajax("GetCodeStuffList", {}, function (a) {
-                            that.tableData = a.rows;
-                            that.total = a.rows.length
+                        Ares.Ajax("CODE_LIST", { "EntityName": "ARES_CODE_STUFF" }, function (a) {
+                            that.tableData = a;
+                            that.total = a.length
                         }, true, null, "../Handler/Handler.ashx", true)
                          
                     },
@@ -116,7 +117,7 @@
                 <el-table-column  prop="T_CLASS_CODE"  label="三级分类"></el-table-column>
                 <el-table-column  prop="GG"  label="规格"></el-table-column>
                 <el-table-column  prop="XH"  label="型号"></el-table-column>
-                <el-table-column  prop="STATUS"  label="状态"></el-table-column>
+               
                 <el-table-column  operation="操作"  label="操作" width="200">
                     <template scope="scope">
                         <el-button  size="small" v-on:click.stop="Update(scope.$index, scope.row)">编辑 </el-button>

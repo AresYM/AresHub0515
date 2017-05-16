@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MailHelper.cs" />
+    <Compile Include="Snowflake.cs" />
     <Compile Include="SqlDBHelper.cs" />
+    <Compile Include="WebEntity.cs" />
     <Compile Include="WebManager.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

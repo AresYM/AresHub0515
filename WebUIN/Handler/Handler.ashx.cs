@@ -4,11 +4,12 @@ using System.Web;
 using System.Web.SessionState;
 using WebDLL;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using WebEntity;
 
 namespace WebUI.Handler
 {
@@ -43,39 +44,59 @@ namespace WebUI.Handler
             }
             switch (operate)
             {
+
+                #region 登录注册部分
+                //用户登录
                 case "Login":
                     Login();
                     break;
+                //用户注册
                 case "Register":
                     Register();
                     break;
-                case "CreateAuthCode":
-                    CreateAuthCode();
-                    break;
-                case "GetUserInfo":
-                    GetUserInfo();
-                    break;
-                case "GetFriend":
-                    GetFriend();
-                    break;
-                case "GetMenus":
-                    GetMenus();
-                    break;
+                //注销登录
                 case "Quit":
                     Quit();
                     break;
+                //生成注册邀请码
+                case "CreateAuthCode":
+                    CreateAuthCode();
+                    break;
+                #endregion
+
+                #region 用户管理部分
+                //获取用户信息
+                case "GetUserInfo":
+                    GetUserInfo();
+                    break;
+                //获取用户列表
                 case "GetUsers":
                     GetUsers();
                     break;
-                case "GetCodeStuffList":
-                    GetCodeStuffList();
+                #endregion
+
+                #region 菜单权限部分
+                case "GetMenus":
+                    GetMenus();
                     break;
-                case "Save_CODE_STUFF":
-                    Save_CODE_STUFF();
+                #endregion
+
+
+                #region 字典表管理部分
+                //字典表插入-跟新
+                case "CODE_OPERTAE":
+                    CODE_OPERTAE();
                     break;
-                case "Delete_CODE_STUFF":
-                    Delete_CODE_STUFF();
+                //字典表删除
+                case "CODE_DELETE":
+                    CODE_DELETE();
                     break;
+                //获取字典表列表
+                case "CODE_LIST":
+                    CODE_LIST();
+                    break;
+                #endregion
+                   
                 case "SendEmail":
                     SendEmail();
                     break;
@@ -88,24 +109,22 @@ namespace WebUI.Handler
             g_Context.Response.End();
         }
 
-        private void ParallelTest()
+        private void CODE_LIST()
         {
-             
+            string TableName = g_Context.Request["EntityName"];
+            string sql = "select * from "+ TableName;
+            DataTable dt = DbHelperSQL.QueryTable(sql);
 
-            // 并行的for循环
-            Parallel.For(0, 200, i =>
-            {
-                
-            });
-
-            
+            SendError sendError = new SendError("201", JsonConvert.SerializeObject(dt), "user_id");
+            Send(sendError);
         }
 
-        private void Delete_CODE_STUFF()
+        private void CODE_DELETE()
         {
             string CODE = g_Context.Request["CODE"];
+            string TableNAME= g_Context.Request["EntityName"];
             Hashtable hs = new Hashtable();
-            hs.Add("delete from ARES_CODE_STUFF where CODE=@CODE", new SqlParameter[] {
+            hs.Add("delete from "+ TableNAME + " where CODE=@CODE", new SqlParameter[] {
                         new SqlParameter("@CODE",CODE)
                     });
             try
@@ -123,18 +142,27 @@ namespace WebUI.Handler
             }
         }
 
-        private void Save_CODE_STUFF()
+        private void CODE_OPERTAE()
         {
-            string CODE = g_Context.Request["CODE"];
-             
-            Hashtable hs = new Hashtable();
-            hs.Add("insert into ARES_CODE_STUFF (CODE,NAME) values(@CODE,@NAME)", new SqlParameter[] {
-                        new SqlParameter("@CODE",CODE),
-                        new SqlParameter("@NAME","你好")
-                    });
+            string EntityName = g_Context.Request["EntityName"];
+            string FormData = g_Context.Request["data"];
+            JObject tokens = JObject.Parse(FormData);
+            IARES_ENTITY a = AresEntityFactory.MakeAresEntity(EntityName, tokens);
+            string CODE = tokens["CODE"].ToString();
+            string sql = "";
+            if (CODE == "")
+            {
+                CODE = Snowflake.Instance().GetId().ToString();
+                tokens["CODE"] = CODE;
+                sql = GetCodeInsertSql(EntityName, tokens);
+            }
+            else
+            {
+                sql = GetCodeUpdateSql(EntityName, tokens);
+            }
             try
             {
-                DbHelperSQL.ExecuteSqlTran(hs);
+                DbHelperSQL.ExecuteSql(sql);
                 SendError sendError = new SendError("200", "数据操作成功", "auth_code");
                 Send(sendError);
                 return;
@@ -147,22 +175,64 @@ namespace WebUI.Handler
             }
         }
 
+        private string GetCodeUpdateSql(string entityName, JObject tokens)
+        {
+            string sql = "update " + entityName + " set ";
+            foreach (var item in tokens)
+            {
+                if (item.Key != "CODE")
+                {
+                    sql += item.Key + " = '" + item.Value + "',";
+                }
+            }
+            sql = sql.TrimEnd(',');
+            sql += " where CODE='" + tokens["CODE"].ToString() + "'";
+            return sql;
+        }
+
+        public string GetCodeInsertSql(string tableName, JObject tokens)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("insert into " + tableName);
+            string a = "";
+            string b = "";
+            foreach (var item in tokens)
+            {
+                a += item.Key + ",";
+                b += "'" + item.Value + "'" + ",";
+            }
+            sb.Append("(");
+            sb.Append(a.TrimEnd(','));
+            sb.Append(")");
+            sb.Append(" values ");
+            sb.Append("(");
+            sb.Append(b.TrimEnd(','));
+            sb.Append(")");
+            return sb.ToString();
+        }
+
+        private void ParallelTest()
+        {
+            // 并行的for循环
+            Parallel.For(0, 500, i =>
+            {
+                long iid = Snowflake.Instance().GetId();
+                DbHelperSQL.ExecuteSql("insert into ARES_CODE_FEED(F_TYPE,F_CODE) values(@F_TYPE,@F_CODE)", new SqlParameter[] {
+                        new SqlParameter("@F_TYPE","ABCD"),
+                        new SqlParameter("@F_CODE",iid.ToString())
+                    });
+            });
+
+
+        }
+
+
+
         private void SendEmail()
         {
             EmailHelper.Instance.SendMail("你好", "这不是一个垃圾邮件");
-           
-        }
 
-        private void GetCodeStuffList()
-        {
-            string sql = string.Format(@"Select * from ARES_CODE_STUFF");
-            DataTable dt = DbHelperSQL.QueryTable(sql);
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                DataGridSend(dt);
-            }
         }
-
         private void GetUsers()
         {
             string queryVal = g_Context.Request["queryVal"];
@@ -230,21 +300,6 @@ namespace WebUI.Handler
             }
         }
 
-        private void GetFriend()
-        {
-
-            Friend f = WebUserBase.GetFriend(SessionUID);
-            if (f.ID == null)
-            {
-                SendError sendError = new SendError("100", "不存在小伙伴信息", "user_id");
-                Send(sendError);
-            }
-            else
-            {
-                SendError sendError = new SendError("201", JsonConvert.SerializeObject(f), "user_id");
-                Send(sendError);
-            }
-        }
 
         private void GetUserInfo()
         {
