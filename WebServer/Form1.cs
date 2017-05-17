@@ -74,7 +74,7 @@ namespace WebServer
             sw1.WriteLine(js.ToString());
             sw1.Close(); //关闭文件
             MessageBox.Show("生成完毕");
-        }
+        } 
 
         private void button2_Click(object sender, EventArgs e)
         {

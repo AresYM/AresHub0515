@@ -275,7 +275,7 @@ namespace WebUI.Handler
                 foreach (DataRow r_lv1 in Lv1)
                 {
                     StringBuilder sb2 = new StringBuilder();
-                    sb1.Append("{\"LV1_NAME\":\"" + r_lv1["MENU_NAME"] + "\",\"LV1_DETAIL\":[");
+                    sb1.Append("{\"LV1_NAME\":\"" + r_lv1["MENU_NAME"] + "\",\"LV1_CODE\":\""+r_lv1["MENU_ID"] +"\",\"LV1_DETAIL\":[");
                     foreach (DataRow r_lv2 in Lv2)
                     {
                         if (r_lv1["MENU_ID"].ToString() == r_lv2["MENU_FATHER"].ToString())
