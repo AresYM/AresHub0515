@@ -9,4 +9,3 @@ E:\AresGit\WebDLL\bin\Debug\WebDLL.pdb
 E:\AresGit\WebDLL\bin\Debug\Newtonsoft.Json.dll
 E:\AresGit\WebDLL\obj\Debug\WebDLL.dll
 E:\AresGit\WebDLL\obj\Debug\WebDLL.pdb
-E:\AresGit\WebDLL\obj\Debug\WebDLL.csprojResolveAssemblyReference.cache

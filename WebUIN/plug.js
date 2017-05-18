@@ -48,6 +48,7 @@ $(function () {
 
 
 
+
 window.CreateAuthCode = function () {
     var a = $("#htxt_auth_code").val();
     if (a == "") {

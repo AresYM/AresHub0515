@@ -7,9 +7,9 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace WebUI {
+namespace WebUI.BaseSet {
     
     
-    public partial class Index {
+    public partial class CODE_CLASS {
     }
 }

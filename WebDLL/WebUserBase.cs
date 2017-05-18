@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace WebDLL
 {
@@ -16,12 +17,12 @@ namespace WebDLL
         public static User GetUser(string UID)
         {
             string sql = string.Format(@"Select A.ID,A.UID,A.PWD,A.NAME,A.AdminLv,A.COMPANY_CODE,B.COMPANY_NAME,A.DEPARTMENT_CODE,C.DEPARTMENT_NAME
-            from (ARES_USER A 
-            LEFT JOIN ARES_CODE_COMPANY B ON A.COMPANY_CODE=B.COMPANY_CODE)
+            from ARES_USER A 
+            LEFT JOIN ARES_CODE_COMPANY B ON A.COMPANY_CODE=B.COMPANY_CODE
             LEFT JOIN ARES_CODE_DEPARTMENT C ON A.DEPARTMENT_CODE=C.DEPARTMENT_CODE
             where A.UID=@UID ");
-            DataTable dt = DbHelperACE.QueryTable(sql, new System.Data.OleDb.OleDbParameter[] {
-                new System.Data.OleDb.OleDbParameter("@UID",UID)
+            DataTable dt = DbHelperSQL.QueryTable(sql, new SqlParameter[] {
+                new SqlParameter("@UID",UID)
             });
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -50,8 +51,8 @@ namespace WebDLL
             INNER JOIN ARES_ROLE_MENU_LINK T4 ON T4.ROLE_ID=T3.ROLE_ID)
             INNER JOIN ARES_MENUS T5 ON T5.MENU_ID=T4.MENU_ID
             WHERE T1.UID=@UID ORDER BY T5.ORDER_NUM");
-            DataTable dt = DbHelperACE.QueryTable(sql, new System.Data.OleDb.OleDbParameter[] {
-                    new System.Data.OleDb.OleDbParameter("@UID",UID)
+            DataTable dt = DbHelperSQL.QueryTable(sql, new SqlParameter[] {
+                    new SqlParameter("@UID",UID)
             });
 
             return dt;

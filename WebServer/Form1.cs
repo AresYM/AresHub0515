@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -19,8 +16,8 @@ namespace WebServer
 
         private void button1_Click(object sender, EventArgs e)
         {
-              
-            string sqlTable = @"select object_id,name from sys.objects where type='U' order by object_id";
+
+            string sqlTable = @"select object_id,name from sys.objects where type='U' and name like 'ARES_CODE_%' order by object_id";
             DataTable dtTables = DbHelperSQL.QueryTable(sqlTable);
             StringBuilder cs = new StringBuilder();
             StringBuilder js = new StringBuilder();
@@ -28,7 +25,7 @@ namespace WebServer
             cs.Append("using System.Text;" + System.Environment.NewLine);
             cs.Append("namespace WebEntity" + System.Environment.NewLine);
             cs.Append("{" + System.Environment.NewLine);
-            cs.Append("interface IARES_ENTITY { }");
+            cs.Append("public interface IARES_ENTITY { }");
             js.Append("window.EntityStructure = {");
             for (int i = 0; i < dtTables.Rows.Count; i++)
             {
@@ -39,7 +36,7 @@ namespace WebServer
                 where a.object_id= b.object_id and b.name='{0}' and a.system_type_id=c.system_type_id 
                 order by a.column_id", entity_name);
                 DataTable dtCols = DbHelperSQL.QueryTable(sqlCol);
-                cs.Append("     public class " + entity_name+ ":IARES_ENTITY" + System.Environment.NewLine);
+                cs.Append("     public class " + entity_name + ":IARES_ENTITY" + System.Environment.NewLine);
                 cs.Append("     {" + System.Environment.NewLine);
                 js.Append("\"" + entity_name + "\":{");
 
@@ -60,21 +57,66 @@ namespace WebServer
                 }
                 js.Append(System.Environment.NewLine);
                 cs.Append("     }" + System.Environment.NewLine);
-                
+
             }
             js.Append("}");
             cs.Append("}" + System.Environment.NewLine);
+            js.Append(System.Environment.NewLine);
+            js.Append("window.EntityData = {");
+            //获取字典数据
+            for (int i = 0; i < dtTables.Rows.Count; i++)
+            {
+                string entity_name = dtTables.Rows[i]["name"].ToString();
+                string sqlData = string.Format(@"select * from {0}", entity_name);
+                DataTable dtData = DbHelperSQL.QueryTable(sqlData);
+                js.Append("\"" + entity_name + "\": [");
+                for (int j = 0; j < dtData.Rows.Count; j++)
+                {
+                    js.Append("{");
+                    for (int k = 0; k < dtData.Columns.Count; k++)
+                    {
+                        js.Append("\"" + dtData.Columns[k].ColumnName + "\":\"" + dtData.Rows[j][dtData.Columns[k].ColumnName] + "\"");
+
+                        if (k != dtData.Columns.Count - 1)
+                        {
+                            js.Append(",");
+                        }
+
+                    }
+                    js.Append("}");
+
+                    if (j != dtData.Rows.Count - 1)
+                    {
+                        js.Append(",");
+                    }
+                }
+
+                js.Append("]");
+
+                if (i != dtTables.Rows.Count - 1)
+                {
+                    js.Append(",");
+                }
+
+            }
+            js.Append("}");
+
+
+
+
             FileStream fs = new FileStream(@"WebEntity.cs", FileMode.OpenOrCreate, FileAccess.ReadWrite); //可以指定盘符，也可以指定任意文件名，还可以为word等文件
-            StreamWriter sw = new StreamWriter(fs); // 创建写入流
+            StreamWriter sw = new StreamWriter(fs, Encoding.UTF8); // 创建写入流
             sw.WriteLine(cs.ToString());
             sw.Close(); //关闭文件
 
+
+
             FileStream fs1 = new FileStream(@"WebEntity.js", FileMode.OpenOrCreate, FileAccess.ReadWrite); //可以指定盘符，也可以指定任意文件名，还可以为word等文件
-            StreamWriter sw1 = new StreamWriter(fs1); // 创建写入流
+            StreamWriter sw1 = new StreamWriter(fs1, Encoding.UTF8); // 创建写入流
             sw1.WriteLine(js.ToString());
             sw1.Close(); //关闭文件
             MessageBox.Show("生成完毕");
-        } 
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {

@@ -68,10 +68,10 @@
     <Content Include="Admin\P2.aspx" />
     <Content Include="Admin\UserManager.aspx" />
     <Content Include="App_Data\ARES.mdb" />
+    <Content Include="BaseSet\CODE_CLASS.aspx" />
     <Content Include="BaseSet\CODE_STUFF.aspx" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="HomePage.aspx" />
-    <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Main.aspx" />
     <Content Include="plug.js" />
@@ -261,6 +261,13 @@
       <DependentUpon>UserManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="BaseSet\CODE_CLASS.aspx.cs">
+      <DependentUpon>CODE_CLASS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BaseSet\CODE_CLASS.aspx.designer.cs">
+      <DependentUpon>CODE_CLASS.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BaseSet\CODE_STUFF.aspx.cs">
       <DependentUpon>CODE_STUFF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -274,13 +281,6 @@
     </Compile>
     <Compile Include="HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

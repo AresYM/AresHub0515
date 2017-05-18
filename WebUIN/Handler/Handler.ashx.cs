@@ -58,6 +58,10 @@ namespace WebUI.Handler
                 case "Quit":
                     Quit();
                     break;
+                //修改密码
+                case "ChangePassword":
+                    ChangePassword();
+                    break;
                 //生成注册邀请码
                 case "CreateAuthCode":
                     CreateAuthCode();
@@ -96,7 +100,6 @@ namespace WebUI.Handler
                     CODE_LIST();
                     break;
                 #endregion
-                   
                 case "SendEmail":
                     SendEmail();
                     break;
@@ -109,10 +112,34 @@ namespace WebUI.Handler
             g_Context.Response.End();
         }
 
+        private void ChangePassword()
+        {
+            string password = g_Context.Request["password"];
+
+            password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(password, "MD5");
+
+            string sql = string.Format("update ARES_USER set PWD='{0}' where UID='{1}'", password, SessionUID);
+            try
+            {
+                int r = DbHelperSQL.ExecuteSql(sql);
+
+                SendError sendError = new SendError("200", (r > 0 ? "密码修改成功" : "密码修改失败"), "auth_code");
+                Send(sendError);
+                return;
+            }
+            catch (Exception e)
+            {
+                SendError sendError = new SendError("100", e.ToString(), "auth_code");
+                Send(sendError);
+                return;
+            }
+
+        }
+
         private void CODE_LIST()
         {
             string TableName = g_Context.Request["EntityName"];
-            string sql = "select * from "+ TableName;
+            string sql = "select * from VIEW_" + TableName;
             DataTable dt = DbHelperSQL.QueryTable(sql);
 
             SendError sendError = new SendError("201", JsonConvert.SerializeObject(dt), "user_id");
@@ -122,9 +149,9 @@ namespace WebUI.Handler
         private void CODE_DELETE()
         {
             string CODE = g_Context.Request["CODE"];
-            string TableNAME= g_Context.Request["EntityName"];
+            string TableNAME = g_Context.Request["EntityName"];
             Hashtable hs = new Hashtable();
-            hs.Add("delete from "+ TableNAME + " where CODE=@CODE", new SqlParameter[] {
+            hs.Add("delete from " + TableNAME + " where CODE=@CODE", new SqlParameter[] {
                         new SqlParameter("@CODE",CODE)
                     });
             try
@@ -177,10 +204,12 @@ namespace WebUI.Handler
 
         private string GetCodeUpdateSql(string entityName, JObject tokens)
         {
+
+            DataTable dt = DbHelperSQL.QueryTable("select * from " + entityName + " where 1=2");
             string sql = "update " + entityName + " set ";
             foreach (var item in tokens)
             {
-                if (item.Key != "CODE")
+                if (item.Key != "CODE" && dt.Columns.Contains(item.Key))
                 {
                     sql += item.Key + " = '" + item.Value + "',";
                 }
@@ -192,14 +221,19 @@ namespace WebUI.Handler
 
         public string GetCodeInsertSql(string tableName, JObject tokens)
         {
+            DataTable dt = DbHelperSQL.QueryTable("select * from " + tableName + " where 1=2");
+
             StringBuilder sb = new StringBuilder();
             sb.Append("insert into " + tableName);
             string a = "";
             string b = "";
             foreach (var item in tokens)
             {
-                a += item.Key + ",";
-                b += "'" + item.Value + "'" + ",";
+                if (dt.Columns.Contains(item.Key))
+                {
+                    a += item.Key + ",";
+                    b += "'" + item.Value + "'" + ",";
+                }
             }
             sb.Append("(");
             sb.Append(a.TrimEnd(','));
@@ -275,7 +309,7 @@ namespace WebUI.Handler
                 foreach (DataRow r_lv1 in Lv1)
                 {
                     StringBuilder sb2 = new StringBuilder();
-                    sb1.Append("{\"LV1_NAME\":\"" + r_lv1["MENU_NAME"] + "\",\"LV1_CODE\":\""+r_lv1["MENU_ID"] +"\",\"LV1_DETAIL\":[");
+                    sb1.Append("{\"LV1_NAME\":\"" + r_lv1["MENU_NAME"] + "\",\"LV1_CODE\":\"" + r_lv1["MENU_ID"] + "\",\"LV1_DETAIL\":[");
                     foreach (DataRow r_lv2 in Lv2)
                     {
                         if (r_lv1["MENU_ID"].ToString() == r_lv2["MENU_FATHER"].ToString())

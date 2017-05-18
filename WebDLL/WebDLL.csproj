@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackUp.cs" />
     <Compile Include="MailHelper.cs" />
     <Compile Include="Snowflake.cs" />
     <Compile Include="SqlDBHelper.cs" />
