@@ -129,6 +129,7 @@
                     }
                 }
             })
+           
             vm.InitMenus();
             //计算浏览器高度
         });
@@ -148,7 +149,7 @@
                             <sapn style="font-size:20px;">Ares</span>
                         </el-menu-item>
                         <template v-for="lv1 in MenuData"  >
-                            <el-submenu :index="lv1.LV1_CODE">
+                            <el-submenu :index="lv1.LV1_CODE>
                                 <template slot="title">{{ lv1.LV1_NAME }}</template>
                                 <templete  v-for="lv2 in lv1.LV1_DETAIL">
                                     <el-menu-item :index="lv2.MENU_CODE">{{ lv2.MENU_NAME }}</el-menu-item>
@@ -156,7 +157,7 @@
                             </el-submenu>
                         </template>
                         <el-submenu index="u-002" style="margin-right:100px; float:right;">
-                            <template slot="title"><i class="el-icon-setting"></i>用户操作</template>
+                            <template slot="title"><i class="el-icon-setting"></i>{{Ares.User().NAME}}</template>
                             <el-menu-item index="u-003" v-on:click="Quit"><i class="el-icon-delete"></i>注销登录</el-menu-item>
                             <el-menu-item index="u-004" v-on:click="ChangePassword"><i class="el-icon-edit"></i>修改密码</el-menu-item>
                             <el-menu-item index="u-005" v-on:click="Suggest"><i class="el-icon-share"></i>意见反馈</el-menu-item>

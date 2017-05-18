@@ -85,7 +85,6 @@ namespace WebUI.Handler
                     break;
                 #endregion
 
-
                 #region 字典表管理部分
                 //字典表插入-跟新
                 case "CODE_OPERTAE":
@@ -100,6 +99,10 @@ namespace WebUI.Handler
                     CODE_LIST();
                     break;
                 #endregion
+
+
+
+                
                 case "SendEmail":
                     SendEmail();
                     break;
@@ -498,7 +501,7 @@ namespace WebUI.Handler
                 {
                     //注册信息
                     Hashtable hs = new Hashtable();
-                    hs.Add("insert into ARES_USER (UID,NAME,PWD,RegistDate,AdminLv) values(@UID,@NAME,@PWD,now(),@AdminLv)", new SqlParameter[] {
+                    hs.Add("insert into ARES_USER (UID,NAME,PWD,RegistDate,AdminLv) values(@UID,@NAME,@PWD,GETDATE(),@AdminLv)", new SqlParameter[] {
                         new SqlParameter("@UID",UID),
                         new SqlParameter("@NAME",NAME),
                         new SqlParameter("@PWD",System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(PWD, "MD5")),
@@ -511,7 +514,6 @@ namespace WebUI.Handler
                     });
                     try
                     {
-                        DbHelperSQL.ExecuteSqlTran(hs);
                         DbHelperSQL.ExecuteSqlTran(hs);
                         SendError sendError = new SendError("200", "注册成功，请返回登陆！", "auth_code");
                         Send(sendError);

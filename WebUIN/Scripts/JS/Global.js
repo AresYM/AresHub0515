@@ -44,7 +44,7 @@ function is_text(type) {
     var _ares = {};
     _ares.User = function () {
         var _data = {};
-        _ares.Ajax("GetUserInfo", { "authSession": "Y" }, function (data) {
+        _ares.Ajax("GetUserInfo", {}, function (data) {
             _data = data;
         }, false)
         return _data;
@@ -104,7 +104,9 @@ function is_text(type) {
                 }
             },
             error: function () {
-                udf_fun_error();
+                if (udf_fun_error) {
+                    udf_fun_error();
+                }
             }
         });
     }

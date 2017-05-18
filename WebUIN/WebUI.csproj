@@ -240,6 +240,7 @@
     <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\default\assets\images\flags.png" />
     <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\github\assets\fonts\octicons.svg" />
     <Content Include="Scripts\Packages\Semantic-UI-master\dist\themes\material\assets\fonts\icons.svg" />
+    <Content Include="StuffManager\StuffInstore.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -303,6 +304,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StuffManager\StuffInstore.aspx.cs">
+      <DependentUpon>StuffInstore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StuffManager\StuffInstore.aspx.designer.cs">
+      <DependentUpon>StuffInstore.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebApps\download.aspx.cs">
       <DependentUpon>download.aspx</DependentUpon>

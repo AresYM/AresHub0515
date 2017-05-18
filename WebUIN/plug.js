@@ -63,7 +63,7 @@ window.CreateAuthCode = function () {
             $("[name='auth_code']").val(data)
         },
         error: function (a, b, c) {
-
+            alert();
         }
     });
 }

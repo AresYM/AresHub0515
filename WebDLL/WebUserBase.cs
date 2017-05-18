@@ -16,7 +16,7 @@ namespace WebDLL
     {
         public static User GetUser(string UID)
         {
-            string sql = string.Format(@"Select A.ID,A.UID,A.PWD,A.NAME,A.AdminLv,A.COMPANY_CODE,B.COMPANY_NAME,A.DEPARTMENT_CODE,C.DEPARTMENT_NAME
+            string sql = string.Format(@"Select '' as ID,A.UID,A.PWD,A.NAME,A.AdminLv,A.COMPANY_CODE,B.COMPANY_NAME,A.DEPARTMENT_CODE,C.DEPARTMENT_NAME
             from ARES_USER A 
             LEFT JOIN ARES_CODE_COMPANY B ON A.COMPANY_CODE=B.COMPANY_CODE
             LEFT JOIN ARES_CODE_DEPARTMENT C ON A.DEPARTMENT_CODE=C.DEPARTMENT_CODE
