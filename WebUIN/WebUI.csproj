@@ -68,7 +68,6 @@
     <Content Include="Admin\P2.aspx" />
     <Content Include="Admin\UserManager.aspx" />
     <Content Include="App_Data\ARES.mdb" />
-    <Content Include="assets\css\reset.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\css\supersized.css" />
     <Content Include="assets\img\backgrounds\1.jpg" />

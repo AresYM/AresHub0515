@@ -9,10 +9,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <script src="Scripts/JS/jquery.min.js"></script>
     <script src="Scripts/JS/Global.js"></script>
-    <script src="Scripts/JS/BaiduWatch.js"></script>
     <script src="assets/js/supersized.3.2.7.min.js"></script>
     <script src="assets/js/supersized-init.js"></script>
-    <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/supersized.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <script>

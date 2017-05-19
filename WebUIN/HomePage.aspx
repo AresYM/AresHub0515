@@ -7,6 +7,13 @@
     <title></title>
 </head>
 <body>
+
+    <ui>
+        <li>Version 1.0.0.4 基础开发版本</li>
+        <li>1.修改登录界面UI,看起来更炫酷,更牛逼</li>
+        <li>2.新增物品入库界面（未完善）</li>
+    </ul>
+        <hr />
     <ui>
         <li>Version 1.0.0.3 基础开发版本</li>
         <li>1.数据库升级为SqlServer数据库</li>
