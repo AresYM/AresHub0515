@@ -512,6 +512,10 @@ namespace WebUI.Handler
                         new SqlParameter("@UID",UID),
                         new SqlParameter("@AUTH_CODE",AUTH_CODE)
                     });
+                    //分配菜单 （上线前请注释）
+                    hs.Add("insert into  ARES_USER_ROLE_LINK (USER_ID,ROLE_ID) values(@UID,1)", new SqlParameter[] {
+                        new SqlParameter("@UID",UID)
+                    });
                     try
                     {
                         DbHelperSQL.ExecuteSqlTran(hs);

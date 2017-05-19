@@ -44,7 +44,7 @@ function is_text(type) {
     var _ares = {};
     _ares.User = function () {
         var _data = {};
-        _ares.Ajax("GetUserInfo", { "authSession": "Y" }, function (data) {
+        _ares.Ajax("GetUserInfo", {}, function (data) {
             _data = data;
         }, false)
         return _data;
@@ -57,6 +57,7 @@ function is_text(type) {
     */
 
     _ares.Ajax = function (operate, data, fun_success, udf_async, udf_fun_error, udf_url, udf_authSession) {
+
         var url = "Handler/Handler.ashx?operate=" + operate;
         if (udf_url != null && udf_url != undefined) {
             url = udf_url + "?operate=" + operate;
@@ -100,6 +101,11 @@ function is_text(type) {
                 }
                 catch (e) {
                     alert("error");
+                }
+            },
+            error: function () {
+                if (udf_fun_error) {
+                    udf_fun_error();
                 }
             }
         });
@@ -191,79 +197,6 @@ function is_text(type) {
         }
     };
 
-    _ares.stringFormatWithKeys = function (source, params) {
-        if (arguments.length == 1)
-            return function () {
-                var args = $.makeArray(arguments);
-                args.unshift(source);
-                return $.stringFormat.apply(this, args);
-            };
-        if (arguments.length > 2 && params.constructor != Array) {
-            params = $.makeArray(arguments).slice(1);
-        }
-
-        if (!params) {
-            console.log(source);
-        }
-
-        if (params.constructor != Array) {
-            params = [params];
-        }
-        if (!source || source == "")
-            return "";
-
-        var num_match = source.match(/\{\s*\d\s*\}/g);
-        if (num_match && num_match.length > 0) {
-            $.each(params, function (i, n) {
-                if (typeof (n) != "undenfined") {
-                    source = source.replace(new RegExp("\\{" + i + "\\}", "g"), n);
-                }
-            });
-            return source;
-        }
-        else {
-            var tranfs = [];
-            $(params).each(function (index) {
-                if (typeof (this) != "object") {
-                    return true;
-                }
-
-                var ret = source.match(/\{\s*\w+\s*:\s*\w*\s*\}|\{\s*\w+\s*\}/g);
-                if (!ret)
-                    return true;
-
-                var _whole = source;;
-                for (var i = 0; i < ret.length; i++) {
-                    var _tpl = ret[i];
-                    var _split_array = _tpl.replace("{", "").replace("}", "").split(":")
-                    if (_split_array.length <= 2) {
-                        var target = $.trim(_split_array[0]);
-                        var format = "";
-                        if (_split_array.length >= 2) {
-                            format = $.trim(_split_array[1]);
-                        }
-                        var _val = this[target];
-                        if (typeof (_val) != "undefined") {
-                            _whole = _whole.replace(_tpl, _val);
-                        }
-                        else {
-                            _whole = _whole.replace(_tpl, "");
-                        }
-                    }
-                }
-                tranfs.push(_whole);
-            })
-            if (tranfs.length == 0) {
-                return source;
-            }
-            else if (tranfs.length == 1)
-                return tranfs[0];
-            return tranfs;
-        }
-    };
-    _ares.Page = {
-
-    }
 
     _ares.DataTable = function () {
         var _this = this;
@@ -443,7 +376,7 @@ function is_text(type) {
                 }
                 else {
                     try {
-                       
+
                         data_field = JSON.parse(data_field);
                         switch (data_field.type) {
                             case "text":
@@ -461,7 +394,7 @@ function is_text(type) {
 
 
             var tab = $("#" + divID).find("table").find("tbody").append(Templete);
-            
+
         }
 
 
@@ -537,38 +470,18 @@ function is_text(type) {
         $("body").append(html);
 
     }
-    _ares.UIWindow = function (divID) {
-        var _this = this;
-        _this.Setting = {
-            Title: "",
-            Width: 800,
-            inverted: true
-        };
-
-        _this.Show = function (udf_fun) {
-            var div = document.createElement("div");
-            var a = $(div);
-            a.addClass("ui modal");
-            a.css("width", _this.Setting.Width + "px");
-            a.append("<i class='close icon'></i>");
-            a.append("<div class='header'>" + _this.Setting.Title + " </div>");
-            a.append("<div class='content'>" + $("#" + divID).html() + "</div>");
-            a.append("<div class='actions'><div class='ui red deny button '>取 消</div><div class='ui positive button'>确 定</div></div>");
-            a.modal({
-                inverted: _this.Setting.inverted
-            }).modal('show');
-
-            if (udf_fun) {
-                udf_fun();
-            }
+    _ares.CurrentData = function (PageSize, CurrentPage, SourceData) {
+        var dataReturn = [];
+        CurrentPage = CurrentPage - 1;
+        var last = CurrentPage * PageSize + PageSize;
+        if (last > SourceData.length) {
+            last = SourceData.length;
         }
-        _this.Hide = function () {
-
+        for (var i = CurrentPage * PageSize; i < last; i++) {
+            dataReturn.push(SourceData[i]);
         }
-
-
+        return dataReturn;
     }
-    
     window.Ares = _ares;
 
 })(window)

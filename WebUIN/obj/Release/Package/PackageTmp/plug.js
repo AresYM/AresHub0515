@@ -48,6 +48,7 @@ $(function () {
 
 
 
+
 window.CreateAuthCode = function () {
     var a = $("#htxt_auth_code").val();
     if (a == "") {
@@ -62,7 +63,7 @@ window.CreateAuthCode = function () {
             $("[name='auth_code']").val(data)
         },
         error: function (a, b, c) {
-
+            alert();
         }
     });
 }
