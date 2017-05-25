@@ -133,6 +133,7 @@
             <el-button class="add_btn" v-on:click="Add">添加</el-button>
             <el-table :data="CurrentTableData" border style="width: 100%" >
                 <el-table-column  prop="CODE"  label="代码"  width="180"></el-table-column>
+                <el-table-column  prop="BARCODE"  label="条形码"></el-table-column>
                 <el-table-column  prop="NAME"  label="名称"></el-table-column>
                 <el-table-column  prop="ENG_NAME"  label="英文名称"></el-table-column>
                 <el-table-column  prop="SHORT_NAME"  label="简称"></el-table-column>
@@ -173,18 +174,24 @@
 
                 <el-row>
                     <el-col :span="11">
+                        <el-form-item label="条码号:" >
+                            <el-input v-model="form.BARCODE"  class="inputText"></el-input>
+                        </el-form-item>       
+                    </el-col>
+                    <el-col :span="11">
                         <el-form-item label="英文名称:" >
                             <el-input v-model="form.ENG_NAME"  class="inputText"></el-input>
                         </el-form-item>       
                     </el-col>
+                                    
+                </el-row>
+
+                <el-row>
                     <el-col :span="11">
                         <el-form-item label="简 称:"  >
                             <el-input v-model="form.SHORT_NAME"  class="inputText"></el-input>
                         </el-form-item>    
-                    </el-col>                    
-                </el-row>
-
-                <el-row>
+                    </el-col>    
                     <el-col :span="11">
                         <el-form-item label="一级分类:">
                             <el-select v-model="form.F_CLASS_CODE" placeholder="请选择" v-on:change="ResetSelect">
@@ -192,6 +199,10 @@
                             </el-select>
                         </el-form-item>
                     </el-col>
+                    
+                </el-row>
+
+                <el-row>
                     <el-col :span="11">
                         <el-form-item label="二级分类:">
                             <el-select v-model="form.S_CLASS_CODE" placeholder="请选择">
@@ -199,47 +210,46 @@
                             </el-select>
                         </el-form-item>
                     </el-col>
-                </el-row>
-
-                <el-row>
-                    
                     <el-col :span="11">
                         <el-form-item label="规格:">
                             <el-input v-model="form.GG"  class="inputText"></el-input>
                         </el-form-item>
                     </el-col>
+                    
+                    
+                </el-row>
+                <el-row>
                     <el-col :span="11">
                         <el-form-item label="型号:">
                             <el-input v-model="form.XH"  class="inputText"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="11">
+                        <el-form-item label="显示标志:">
+                            <el-checkbox v-model="form.STATUS"></el-checkbox>
                         </el-form-item>
                     </el-col>
                     
                 </el-row>
                 <el-row>
                     <el-col :span="11">
-                        <el-form-item label="显示标志:">
-                            <el-checkbox v-model="form.STATUS"></el-checkbox>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="11">
                         <el-form-item label="拆包标志:">
                             <el-checkbox v-model="form.OPEN_FLAG"></el-checkbox>
                         </el-form-item>
                     </el-col>
-                </el-row>
-                <el-row>
                     <el-col :span="11">
                         <el-form-item label="大单位:">
                             <el-input v-model="form.B_UNIT_CODE"  class="inputText"></el-input>
                         </el-form-item>
                     </el-col>
-                     <el-col :span="11">
+                     
+                </el-row>
+                <el-row>
+                    <el-col :span="11">
                         <el-form-item label="小单位:">
                             <el-input v-model="form.S_UNIT_CODE"  class="inputText"></el-input>
                         </el-form-item>
                     </el-col>
-                </el-row>
-                <el-row>
                     <el-col :span="11">
                         <el-form-item label="单位转换基数:">
                             <el-input v-model="form.UNIT_SWITCH"  class="inputText"></el-input>

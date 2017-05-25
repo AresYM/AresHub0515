@@ -97,6 +97,8 @@
     <Content Include="Scripts\JS\BaiduWatch.js" />
     <Content Include="Scripts\JS\code_data.js" />
     <Content Include="Scripts\JS\Global.js" />
+    <Content Include="Scripts\JS\jquery.autocompleter.css" />
+    <Content Include="Scripts\JS\jquery.autocompleter.js" />
     <Content Include="Scripts\JS\jquery.min.js" />
     <Content Include="Scripts\JS\md5.js" />
     <Content Include="Scripts\JS\WebEntity.js" />

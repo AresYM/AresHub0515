@@ -13,17 +13,27 @@
     <script src="../Scripts/Packages/Element-UI/element_ui.js"></script>
     <script src="../Scripts/JS/Global.js"></script>
     <script src="../Scripts/JS/WebEntity.js"></script>
-
+    <script src="../Scripts/JS/jquery.autocompleter.js"></script>
 
     <script>
+
+        window.StuffInStoreOrderDetail = {
+            GetEntity: function () {
+                return { "DH": "", "STUFF_CODE": "", "STUFF_NAME": "", "PH": "", "GGDH": "", "PROVIDER": "", "PRODUCE_DATE": "", "AMOUNT": "", "UNIT_PRICE": "", "SELL_PRICE": "" };
+            }
+        }
+
+
         $(function () {
             var vm = new Vue({
                 el: "#app",
                 data: {
                     form: [],
                     dialogFormVisible: false,
-                    formMain: { "OPERATE_DATE": "" },
-                    formNext: { "DH": "", "STUFF_CODE": "", "PH": "", "GGDH": "", "PROVIDER": "", "PRODUCE_DATE": "", "AMOUNT": "", "UNIT_PRICE": "", "SELL_PRICE": "" },
+                    formMain: { "DH": "" },
+                    formNext: StuffInStoreOrderDetail.GetEntity(),
+                    StuffCodeData: [],
+                    BarCode: "",
                     tableData: [],
                     CurrentTableData: [],
                     fff: ''
@@ -36,10 +46,25 @@
 
                     },
                     AAA: function (a) {
-                        alert(a);
+                        alert('');
 
                     },
+                    ScanBarcode: function () {
+                        var barcode = this.BarCode;
+                        if (barcode == '' || barcode == null) {
+                            this.$message({
+                                message: '条码为空,请检查扫描枪是否异常',
+                                type: 'warning'
+                            });
+                            return;
+                        }
+
+                        Ares.Ajax("GetStuff", { BarCode: barcode }, function (a) {
+
+                        }, true, null, "", true);
+                    },
                     AddStuff: function () {
+                        this.formNext = StuffInStoreOrderDetail.GetEntity();
                         this.dialogFormVisible = true;
                     },
                     Save: function () {
@@ -47,11 +72,31 @@
                         this.tableData.push(this.formNext);
                         this.CurrentTableData.push(this.formNext);
                         this.dialogFormVisible = false;
+                    },
+                    SureSave: function () {
+                        this.$notify({
+                            title: '警告',
+                            message: '保存到数据库',
+                            type: 'success'//success/warning/info/error
+                        });
+                    },
+                    SelectStuff: function (a) {
+                        alert(a);
                     }
+                },
+                mounted: function () {
+                    var _this = this;
+                    Ares.Ajax("StuffInstoreInit", {}, function (res) {
+                        _this.formMain.DH = res.Message;
+                    }, true, null, "../Handler/Handler.ashx", true);
 
+                    Ares.Ajax("CODE_LIST", { "EntityName": "ARES_CODE_STUFF" }, function (a) {
+                        _this.StuffCodeData = a;
+                    }, true, null, "../Handler/Handler.ashx", true);
+
+                    
                 }
             })
-
         });
 
 
@@ -65,30 +110,20 @@
 <body>
 
     <div id="app">
-        <template>           
-            
-            
-            <el-form :model="formMain" label-width="80px">   
+        <template>
+            <el-form :model="formMain" label-width="120px">   
                 <el-row>
                     <el-col :span="6">
-                        <el-form-item label="流水号:"  >
+                        <el-form-item label="入库单据流水号 :"  >
                             <el-input v-model="formMain.DH" :disabled="true"  placeholder="自动生成" class="inputText"></el-input>
                         </el-form-item>    
-                    </el-col>  
-                    <el-col :span="6">
-                        <el-form-item label="入库人员:" >
-                            <el-input v-model="formMain.OPERATE_USER"  class="inputText"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item label="入库时间:" >
-                            <el-date-picker v-model="formMain.OPERATE_DATE" type="datetime" placeholder="选择日期时间"></el-date-picker>
-                        </el-form-item>
                     </el-col>
                 </el-row>
             </el-form>
             <hr />
             <el-button class="query_btn"  style="margin:0px 5px 10px 5px" v-on:click="AddStuff">新增物品</el-button>
+            <el-button class="query_btn"  style="margin:0px 5px 10px 5px;" v-on:click="SureSave" >确认入库</el-button>
+            <el-input v-model="BarCode" placeholder="扫码区" style=" width:300px; margin-left:100px;" v-on:keyup.enter.native="ScanBarcode"></el-input>
             <el-table :data="CurrentTableData" border style="width: 100%">
                 <el-table-column  prop="DH"  label="单据号(系统生成)"  width="180"></el-table-column>
                 <el-table-column  prop="STUFF_NAME"  label="物品名称"></el-table-column>
@@ -107,9 +142,7 @@
                     </template>
                 </el-table-column>
             </el-table>
-
-            <hr />
-            <el-button class="query_btn"  style="margin:0px 5px 10px 5px; float:right;" >确认入库</el-button>
+            
             
             <el-dialog title="添加" top="20px" v-model="dialogFormVisible">
                 <el-form :model="formNext" label-width="80px">
@@ -121,7 +154,7 @@
                         </el-col>
                         <el-col :span="8">
                             <el-form-item label="物品名称:"  >
-                                <el-input v-model="formNext.STUFF_CODE" class="inputText"></el-input>
+                                <el-input v-model="formNext.STUFF_CODE" name="OOO" class="inputText"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="8">

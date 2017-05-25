@@ -461,20 +461,7 @@ function is_text(type) {
     }
 
     _ares.Alert = function (header, content) {
-        var html = "<div class='ui compact message'><i class='close icon'></i><div class='header'>Welcome back! </div><p>This is a special notification which you can dismiss if you're bored with it.</p></div>";
-        // var DIV = document.createElement("div");
-        // var _this = $(DIV);
-        // _this.addClass("ui message");
-
-        //_this.html("<i class='close icon></i>");
-        // _this.append("<i class='close icon></i>");
-
-        // _this.find(".close").click(function () {
-        //     _this.remove();
-        // });
-        // _this.append("<div class='header'>" + header + "</div>");
-        //_this.append("<p>" + content + "</p>");
-        $("body").append(html);
+         
 
     }
     _ares.CurrentData = function (PageSize, CurrentPage, SourceData) {

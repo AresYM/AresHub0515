@@ -100,9 +100,13 @@ namespace WebUI.Handler
                     break;
                 #endregion
 
+                #region 物品入库部分
+                case "StuffInstoreInit":
+                    StuffInstoreInit();
+                    break;
+                #endregion 
 
 
-                
                 case "SendEmail":
                     SendEmail();
                     break;
@@ -113,6 +117,13 @@ namespace WebUI.Handler
                     break;
             }
             g_Context.Response.End();
+        }
+
+        private void StuffInstoreInit()
+        {
+            Snowflake s = new Snowflake();
+            string id = s.GetId().ToString();
+            Send(new SendError("200", id, ""));
         }
 
         private void ChangePassword()
