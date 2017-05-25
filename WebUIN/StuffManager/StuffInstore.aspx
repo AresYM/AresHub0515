@@ -19,7 +19,7 @@
 
         window.StuffInStoreOrderDetail = {
             GetEntity: function () {
-                return { "DH": "", "STUFF_CODE": "", "STUFF_NAME": "", "PH": "", "GGDH": "", "PROVIDER": "", "PRODUCE_DATE": "", "AMOUNT": "", "UNIT_PRICE": "", "SELL_PRICE": "" };
+                return { "DH": "", "STUFF_CODE": "", "STUFF_NAME": "", "PH": "", "GGDH": "", "PROVIDER": "", "PRODUCE_DATE": "", "AMOUNT": "", "UNIT_PRICE": "", "SELL_PRICE": "", "TOTAL_PRICE": "" };
             }
         }
 
@@ -32,7 +32,7 @@
                     dialogFormVisible: false,
                     formMain: { "DH": "" },
                     formNext: StuffInStoreOrderDetail.GetEntity(),
-                    StuffCodeData: [],
+                    CodeData: { "Stuff": [], "Supplier": [] },
                     BarCode: "",
                     tableData: [],
                     CurrentTableData: [],
@@ -46,8 +46,13 @@
 
                     },
                     AAA: function (a) {
-                        alert('');
-
+                        alert(a);
+                    },
+                    RemoteCodeStuff: function (searchVal) {
+                        var _this = this;
+                        Ares.Ajax("CODE_LIST", { "EntityName": "ARES_CODE_STUFF", "searchVal": searchVal }, function (a) {
+                            _this.CodeData.Stuff = a;
+                        }, true, null, "../Handler/Handler.ashx", true);
                     },
                     ScanBarcode: function () {
                         var barcode = this.BarCode;
@@ -58,7 +63,6 @@
                             });
                             return;
                         }
-
                         Ares.Ajax("GetStuff", { BarCode: barcode }, function (a) {
 
                         }, true, null, "", true);
@@ -68,7 +72,15 @@
                         this.dialogFormVisible = true;
                     },
                     Save: function () {
-                        this.formNext.PRODUCE_DATE = this.formNext.PRODUCE_DATE.Format("yyyy-MM-dd hh:mm")
+
+                        var _this = this.formNext;
+                        if (_this.PRODUCE_DATE != "") {
+                            _this.PRODUCE_DATE = _this.PRODUCE_DATE.Format("yyyy-MM-dd hh:mm")
+                        }
+                        if (!isNaN(_this.UNIT_PRICE) && !isNaN(_this.AMOUNT)) {
+                            _this.TOTAL_PRICE = parseFloat(_this.UNIT_PRICE) * parseFloat(_this.AMOUNT)
+                        }
+
                         this.tableData.push(this.formNext);
                         this.CurrentTableData.push(this.formNext);
                         this.dialogFormVisible = false;
@@ -81,7 +93,16 @@
                         });
                     },
                     SelectStuff: function (a) {
-                        alert(a);
+                        var value = "";
+                        for (var i = 0; i < this.CodeData.Stuff.length; i++) {
+                            if (this.CodeData.Stuff[i].CODE == a) {
+                                value = this.CodeData.Stuff[i].NAME;
+                                break;
+                            }
+                        }
+                        if (value != "") {
+                            this.formNext.STUFF_NAME = value;
+                        }
                     }
                 },
                 mounted: function () {
@@ -90,11 +111,9 @@
                         _this.formMain.DH = res.Message;
                     }, true, null, "../Handler/Handler.ashx", true);
 
-                    Ares.Ajax("CODE_LIST", { "EntityName": "ARES_CODE_STUFF" }, function (a) {
-                        _this.StuffCodeData = a;
+                    Ares.Ajax("CODE_LIST", { "EntityName": "ARES_CODE_SUPPLIER" }, function (a) {
+                        _this.CodeData.Supplier = a;
                     }, true, null, "../Handler/Handler.ashx", true);
-
-                    
                 }
             })
         });
@@ -125,15 +144,15 @@
             <el-button class="query_btn"  style="margin:0px 5px 10px 5px;" v-on:click="SureSave" >确认入库</el-button>
             <el-input v-model="BarCode" placeholder="扫码区" style=" width:300px; margin-left:100px;" v-on:keyup.enter.native="ScanBarcode"></el-input>
             <el-table :data="CurrentTableData" border style="width: 100%">
-                <el-table-column  prop="DH"  label="单据号(系统生成)"  width="180"></el-table-column>
+                <el-table-column type="index" label="序号" width="70"></el-table-column>                 
                 <el-table-column  prop="STUFF_NAME"  label="物品名称"></el-table-column>
+                <el-table-column  prop="PROVIDER"  label="供应商"></el-table-column>
                 <el-table-column  prop="PH"  label="批号"></el-table-column>
                 <el-table-column  prop="AMOUNT"  label="数量"></el-table-column>
                 <el-table-column  prop="UNIT_PRICE"  label="进货价"></el-table-column>
                 <el-table-column  prop="SELL_PRICE"  label="零售价"></el-table-column>
                 <el-table-column  prop="TOTAL_PRICE"  label="总金额"></el-table-column>
-                <el-table-column  prop="GGXH"  label="规格型号"></el-table-column>
-                <el-table-column  prop="PROVIDER"  label="供应商"></el-table-column>
+                <el-table-column  prop="GGXH"  label="规格型号"></el-table-column>               
                 <el-table-column  prop="PRODUCE_DATE"  label="生产日期"></el-table-column>
                 <el-table-column  prop="___OP"  operation="操作"  label="操作"  width="200">
                     <template scope="scope">
@@ -142,19 +161,14 @@
                     </template>
                 </el-table-column>
             </el-table>
-            
-            
-            <el-dialog title="添加" top="20px" v-model="dialogFormVisible">
+            <el-dialog title="新增入库物品" top="20px" v-model="dialogFormVisible">
                 <el-form :model="formNext" label-width="80px">
-                    <el-row>
-                        <el-col :span="8">
-                            <el-form-item label="流水号:"  >
-                                <el-input v-model="formNext.DH" :disabled="true"  placeholder="自动生成" class="inputText"></el-input>
-                            </el-form-item>
-                        </el-col>
+                    <el-row>                         
                         <el-col :span="8">
                             <el-form-item label="物品名称:"  >
-                                <el-input v-model="formNext.STUFF_CODE" name="OOO" class="inputText"></el-input>
+                                <el-select v-model="formNext.STUFF_CODE" filterable remote placeholder="请选择" v-on:change="SelectStuff" no-data-text="没有数据" :remote-method="RemoteCodeStuff">
+                                    <el-option v-for="item in CodeData.Stuff" :key="item.CODE" :label="item.NAME" :value="item.CODE"> </el-option>
+                                </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :span="8">
@@ -162,13 +176,13 @@
                                 <el-input v-model="formNext.PH" class="inputText"></el-input>
                             </el-form-item>
                         </el-col>
-                    </el-row>
-                    <el-row>
                         <el-col :span="8">
                             <el-form-item label="规格型号:"  >
-                                <el-input v-model="formNext.GGDH"  class="inputText"></el-input>
+                                <el-input v-model="formNext.GGXH"  class="inputText"></el-input>
                             </el-form-item>
                         </el-col>
+                    </el-row>
+                    <el-row>                        
                         <el-col :span="8">
                             <el-form-item label="供应商:"  >
                                 <el-input v-model="formNext.PROVIDER" class="inputText"></el-input>
@@ -179,13 +193,13 @@
                                 <el-date-picker v-model="formNext.PRODUCE_DATE" type="datetime" placeholder="选择日期时间"></el-date-picker>
                             </el-form-item>
                         </el-col>
-                    </el-row>
-                    <el-row>
                         <el-col :span="8">
                             <el-form-item label="数量:"  >
                                 <el-input v-model="formNext.AMOUNT"  class="inputText"></el-input>
                             </el-form-item>
                         </el-col>
+                    </el-row>
+                    <el-row>                        
                         <el-col :span="8">
                             <el-form-item label="进货价:"  >
                                 <el-input v-model="formNext.UNIT_PRICE"  class="inputText"></el-input>

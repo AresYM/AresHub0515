@@ -153,7 +153,12 @@ namespace WebUI.Handler
         private void CODE_LIST()
         {
             string TableName = g_Context.Request["EntityName"];
+            string searchVal = g_Context.Request["searchVal"];
             string sql = "select * from VIEW_" + TableName;
+            if (!string.IsNullOrWhiteSpace(searchVal))
+            {
+                sql += string.Format(" where ENG_NAME like '%"+ searchVal + "%'");
+            }
             DataTable dt = DbHelperSQL.QueryTable(sql);
 
             SendError sendError = new SendError("201", JsonConvert.SerializeObject(dt), "user_id");
